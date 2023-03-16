@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import study.querydsl.entity.Member;
 import study.querydsl.entity.Team;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,6 +17,11 @@ import javax.persistence.PersistenceContext;
 public class InitMember {
 
     private final InitMemberService initMemberService;
+
+    @PostConstruct
+    public void init() {
+        initMemberService.init();
+    }
 
 
     @Component

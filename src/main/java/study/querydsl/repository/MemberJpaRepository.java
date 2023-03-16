@@ -121,15 +121,15 @@ public class MemberJpaRepository {
     }
 
     private BooleanExpression teamNameEq(String teamName) {
-        return !hasText(teamName) ? team.name.eq(teamName) : null;
+        return hasText(teamName) ? team.name.eq(teamName) : null;
     }
 
     private BooleanExpression ageGoe(Integer ageGoe) {
-        return ObjectUtils.isEmpty(ageGoe) ? member.age.goe(ageGoe) : null;
+        return !ObjectUtils.isEmpty(ageGoe) ? member.age.goe(ageGoe) : null;
     }
 
     private BooleanExpression ageLoe(Integer ageLoe) {
-        return ObjectUtils.isEmpty(ageLoe) ? member.age.loe(ageLoe) : null;
+        return !ObjectUtils.isEmpty(ageLoe) ? member.age.loe(ageLoe) : null;
     }
 
     public List<Member> findMember(MemberSearchCondition condition) {

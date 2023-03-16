@@ -1,7 +1,6 @@
 package study.querydsl.repository;
 
 import com.querydsl.core.QueryResults;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -14,8 +13,6 @@ import org.springframework.util.StringUtils;
 import study.querydsl.dto.MemberSearchCondition;
 import study.querydsl.dto.MemberTeamDto;
 import study.querydsl.dto.QMemberTeamDto;
-import study.querydsl.entity.QMember;
-import study.querydsl.entity.QTeam;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -59,11 +56,11 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom {
     }
 
     private BooleanExpression ageGoe(Integer ageGoe) {
-        return ObjectUtils.isEmpty(ageGoe) ? member.age.goe(ageGoe) : null;
+        return !ObjectUtils.isEmpty(ageGoe) ? member.age.goe(ageGoe) : null;
     }
 
     private BooleanExpression ageLoe(Integer ageLoe) {
-        return ObjectUtils.isEmpty(ageLoe) ? member.age.loe(ageLoe) : null;
+        return !ObjectUtils.isEmpty(ageLoe) ? member.age.loe(ageLoe) : null;
     }
 
 
